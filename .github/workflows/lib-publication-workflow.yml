@@ -1,0 +1,34 @@
+name: Publish to GitHub Packages
+
+on:
+  workflow_call:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 24
+
+      - name: Download init.gradle.kts
+        run: curl -o init.gradle.kts https://raw.githubusercontent.com/YuriyNekludov/personal-ops-repository/main/gradle/init.gradle.kts
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Publish to GitHub Packages
+        run: ./gradlew publish --init-script init.gradle.kts
+        env:
+          MAVEN_URL: ${{ secrets.MAVEN_URL }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
