@@ -12,13 +12,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: 24
+          java-version: 25
 
       - name: Download init.gradle.kts
         run: curl -o init.gradle.kts https://raw.githubusercontent.com/YuriyNekludov/personal-ops-repository/main/gradle/init.gradle.kts
