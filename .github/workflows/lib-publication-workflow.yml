@@ -27,7 +27,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run tests
-        run: ./gradlew test --stacktrace --init-script init.gradle.kts
+        run: ./gradlew test --init-script init.gradle.kts
 
       - name: Publish to GitHub Packages
         run: ./gradlew publish --init-script init.gradle.kts
