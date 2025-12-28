@@ -28,6 +28,11 @@ jobs:
 
       - name: Run tests
         run: ./gradlew test --init-script init.gradle.kts
+        env:
+          MAVEN_URL: ${{ secrets.MAVEN_URL }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+          PLATFORM_URL: ${{ secrets.PLATFORM_URL }}
 
       - name: Publish to GitHub Packages
         run: ./gradlew publish --init-script init.gradle.kts
