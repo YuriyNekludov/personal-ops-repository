@@ -9,17 +9,6 @@ jobs:
     permissions:
       contents: read
 
-    services:
-      docker:
-        image: docker:24.0.2-dind
-        options: --privileged
-        ports:
-          - 5432:5432
-        env:
-          DOCKER_TLS_CERTDIR: ""
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
